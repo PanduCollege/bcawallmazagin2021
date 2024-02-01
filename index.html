@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BCA BOOK</title>
+        <link rel="stylesheet" href="book.css">
+    </head>
+    <body>
+        
+        <div class="slider">
+            <div class="item">
+                <h1>Welcome!</h1>
+                <h3><br><br>Wall Magazinem <br>of <br>Bachelor of Computer Science & Application</h3>
+                <br><h3>For session 2021-22</h3>
+            </div>
+            
+            <div class="item">
+                <h1>COMPUTECH</h1><br>
+                <img src="img/1.jpg"></img>
+            </div>
+            <div class="item">
+                <br><br><br><br><br>
+                <img src="img/3.jpg"></img>
+            </div>
+            <button id="next">></button>
+            <button id="prev"><</button>
+        </div>
+    
+        <script src="book.js"></script>
+        <script>
+            let touchStartX = 0;
+            let touchEndX = 0;
+    
+            document.querySelector('.slider').addEventListener("touchstart", function (event) {
+                touchStartX = event.touches[0].clientX;
+            });
+    
+            document.querySelector('.slider').addEventListener("touchmove", function (event) {
+                touchEndX = event.touches[0].clientX;
+            });
+    
+            document.querySelector('.slider').addEventListener("touchend", function () {
+                handleSwipe();
+                touchStartX = 0;
+                touchEndX = 0;
+            });
+    
+            function handleSwipe() {
+                const swipeThreshold = 50;
+    
+                if (touchEndX - touchStartX > swipeThreshold) {
+                    // Swipe right
+                    document.getElementById('prev').click();
+                } else if (touchStartX - touchEndX > swipeThreshold) {
+                    // Swipe left
+                    document.getElementById('next').click();
+                }
+            }
+        </script>
+    </body>
+    </html>
